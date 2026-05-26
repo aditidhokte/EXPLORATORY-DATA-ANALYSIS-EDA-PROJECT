@@ -1,0 +1,104 @@
+# ==========================================
+# EXPLORATORY DATA ANALYSIS (EDA) PROJECT
+# ==========================================
+
+# Import Libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load Dataset
+# Replace 'data.csv' with your dataset file name
+df = pd.read_csv('data.csv')
+
+# ==========================================
+# 1. Display Dataset
+# ==========================================
+print("First 5 Rows:")
+print(df.head())
+
+print("\nDataset Shape:")
+print(df.shape)
+
+print("\nColumn Names:")
+print(df.columns)
+
+# ==========================================
+# 2. Dataset Information
+# ==========================================
+print("\nDataset Information:")
+print(df.info())
+
+# ==========================================
+# 3. Check Missing Values
+# ==========================================
+print("\nMissing Values:")
+print(df.isnull().sum())
+
+# Fill Missing Values (Optional)
+df.fillna(df.mean(numeric_only=True), inplace=True)
+
+# ==========================================
+# 4. Remove Duplicate Values
+# ==========================================
+df.drop_duplicates(inplace=True)
+
+print("\nDuplicates Removed")
+
+# ==========================================
+# 5. Statistical Summary
+# ==========================================
+print("\nStatistical Summary:")
+print(df.describe())
+
+# ==========================================
+# 6. Correlation Matrix
+# ==========================================
+plt.figure(figsize=(10,6))
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap='coolwarm')
+plt.title("Correlation Heatmap")
+plt.show()
+
+# ==========================================
+# 7. Histogram
+# ==========================================
+df.hist(figsize=(12,10))
+plt.suptitle("Histograms")
+plt.show()
+
+# ==========================================
+# 8. Box Plot
+# ==========================================
+plt.figure(figsize=(10,6))
+sns.boxplot(data=df)
+plt.xticks(rotation=90)
+plt.title("Box Plot")
+plt.show()
+
+# ==========================================
+# 9. Scatter Plot
+# ==========================================
+# Replace column names with your dataset columns
+# Example:
+# sns.scatterplot(x='Age', y='Salary', data=df)
+
+# ==========================================
+# 10. Pair Plot
+# ==========================================
+sns.pairplot(df)
+plt.show()
+
+# ==========================================
+# 11. Key Insights
+# ==========================================
+print("\nEDA Analysis Completed Successfully!")
+
+print("""
+Key Insights:
+1. Dataset cleaned successfully.
+2. Missing values handled.
+3. Correlations identified using heatmap.
+4. Data distribution visualized using histograms.
+5. Outliers detected using boxplot.
+""" )
